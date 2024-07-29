@@ -1,13 +1,18 @@
 import "./input-box.css";
 
-const InputBox = () => {
+const InputBox = (props) => {
     return (
         <>
-            <div className="group">
-                <input type="text" required />
-                <span className="highlight"></span>
-                <span className="bar"></span>
-                <label>Name</label>
+            <div className="input-box">
+                <input
+                    type={props.type}
+                    name={props.type}
+                    id={props.id}
+                    className="input-field"
+                    required
+                />
+                
+                <div className="input-label">{props.placeholder}</div>
             </div>
         </>
     );
