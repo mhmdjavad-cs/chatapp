@@ -9,6 +9,7 @@ const InputBox = (props) => {
                     name={props.type}
                     id={props.id}
                     className="input-field"
+                    onChange={(e)=>(props.setFunc(e.target.value))}
                     required
                 />
                 

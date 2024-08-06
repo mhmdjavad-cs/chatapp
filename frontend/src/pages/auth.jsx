@@ -3,6 +3,11 @@ import Button from "../components/button";
 import InputBox from "../components/input-box";
 import "./styles/auth.css";
 import AnimatedPage from "./animated-page";
+import { useState } from "react";
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AuthPage = (props) => {
     return (
@@ -13,20 +18,51 @@ const AuthPage = (props) => {
 };
 
 const Login = () => {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    
+        try {
+          const response = await axios.post('http://localhost:8000/get_token/', {
+            username,
+            password,
+          });
+    
+          const token = response.data.token;
+          console.log(token)
+          //localStorage.setItem('token', token);
+          setMessage('Login successful');
+          setError('');
+          toast.success('Login was successful!');
+        } catch (error) {
+          setError('Invalid username or password');
+          setMessage('');
+        }
+      };
+
+
     return (
         <>
             <div className="form-container">
                 <h1 className="title-font">Login Form!</h1>
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                     <InputBox
                         type="text"
                         placeholder="username"
                         id="username"
+                        setFunc={setUsername}
                     />
                     <InputBox
                         type="password"
                         placeholder="password"
                         id="password"
+                        setFunc={setPassword}
                     />
 
                     <p className="navigate1">
@@ -36,7 +72,10 @@ const Login = () => {
 
                     <Button text={"Login To The Account"} onClick={() => {}} />
                 </form>
+            <ToastContainer />
             </div>
+            {/* {error && <p style={{ color: 'red' }}>{error}</p>}
+            {message && <p style={{ color: 'green' }}>{message}</p>} */}
         </>
     );
 };
