@@ -3,12 +3,18 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import InputBox from "../../components/input-box";
 import Button from "../../components/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import endPoints from "../../mySettings";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
+
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const {setIsAuthenticated, setToken} = useContext(AuthContext);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,8 +27,11 @@ const Login = () => {
 
             const token = response.data.token;
             console.log(token);
-            //localStorage.setItem('token', token);
+            //localStorage.setItem('authToken', token);
             toast.success("Login was successful!");
+            setIsAuthenticated(true);
+            setToken(token);
+            navigate('/');
         } catch (error) {
             toast.error("Faild to Login!");
         }

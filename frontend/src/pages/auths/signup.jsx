@@ -1,10 +1,12 @@
 import InputBox from "../../components/input-box";
 import Button from "../../components/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import endPoints from "../../mySettings";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 
 
 const SignUp = () => {
@@ -12,6 +14,8 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
+    const navigate = useNavigate()
+    const {setIsAuthenticated, setToken} = useContext(AuthContext);
 
     const handleSubmit = async (event) => {
         
@@ -42,7 +46,10 @@ const SignUp = () => {
                 if (response.data.status === "error"){
                     toast.error(response.data.message)
                 }else{
-                    toast.success(response.data.message)
+                    toast.success(response.data.message);
+                    setToken(response.data.token);
+                    setIsAuthenticated(true);
+                    navigate('/');
                 }
 
 
