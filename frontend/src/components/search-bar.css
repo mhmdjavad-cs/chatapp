@@ -1,0 +1,10 @@
+
+.search-bar{
+    display: flex;
+    gap: 30px;
+}
+
+.icon-button{
+    margin-top: 0.3px;
+}
+

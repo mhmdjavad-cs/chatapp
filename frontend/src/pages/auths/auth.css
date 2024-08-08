@@ -8,6 +8,11 @@ body{
     width: 100%;
 }
 
+#root{
+    width: auto;
+    height: auto;
+}
+
 h1{
     color: var(--text);
 }
@@ -67,3 +72,9 @@ h1{
     cursor: pointer;
 }
 
+
+
+.root{
+    width: 100% !important;
+    height: 100% !important;
+}
