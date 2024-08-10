@@ -13,7 +13,7 @@ const SearchBar = () => {
                     id="serach-box"
                     setFunc={() => {}}
                 ></InputBox>
-                <IconButton icon={<i className='bx bxs-search-alt-2 icon' ></i>}/>
+                <IconButton icon={<i className='bx bxs-message-add icon'></i>}/>
             </div>
         </>
     );

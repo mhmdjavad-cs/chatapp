@@ -1,0 +1,42 @@
+
+
+.user-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.user{
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items:center;
+}
+
+.avatar{
+    width: 60px;
+    border: 2px solid #a6d189;
+    border-radius: 15px;
+}
+
+
+.username-text{
+    color: var(--text);
+    font-size: 20px;
+    margin: 0;
+    
+}
+
+.texts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:max-content;
+    height: fit-content;
+}
+
+.texts .navigate1{
+    color: #8bd5ca;
+    left: 0;
+}

@@ -1,0 +1,12 @@
+
+.scroll-box{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 9px;
+    padding: 10px;
+}
+
+
+
+
